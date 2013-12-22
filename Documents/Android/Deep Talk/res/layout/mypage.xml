@@ -1,0 +1,53 @@
+<LinearLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="fill_parent"
+     android:layout_height="fill_parent"
+     android:orientation="vertical"
+     android:background="@drawable/mypage">
+     
+     
+     <RelativeLayout
+         android:layout_marginTop= "40dp"
+        android:layout_width="match_parent"
+       	android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/b1"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="10dp"
+            android:background="@null"
+             />
+                <Button
+            android:id="@+id/b2"
+            android:layout_toRightOf="@+id/b1"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@null"
+            android:layout_margin="10dp"
+             />
+                        <Button
+            android:id="@+id/b3"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/b1"
+            android:layout_margin="10dp"
+            android:background="@null"
+              />
+                                <Button
+            android:id="@+id/b4"
+            android:layout_below="@+id/b2"
+            android:layout_marginLeft= "178dp"
+            android:layout_marginTop= "10dp"
+            android:layout_width="150dp"
+            android:background="@null"
+            android:layout_height="150dp"
+            />
+  
+
+
+    </RelativeLayout>
+
+</LinearLayout>  
