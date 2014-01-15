@@ -176,36 +176,76 @@ Parse.Cloud.job("matchOffer", function(request, status) {
 	}); 
 });
 
+Parse.Cloud.job("listMaker", function(request, status) {
+  var userinfo = Parse.Object.extend('UserInfo'),
+      infoQuery = new Parse.Query(userinfo);
+
+      infoQuery.get('Zl0QIRJ0Zb', {
+        success: function(object) {
+          // object is an instance of Parse.Object.
+          var list = object.get("userList"),
+              counter = 0,
+              query = new Parse.Query(Parse.User);
+
+              query.each(function(user) {
+                var username = user.get("username");
+                if(list[username] === undefined) {
+                  list[username] = user.get("info");
+                  counter++;
+                }
+              }).then(function() {
+                // Set the job's success status
+                object.set("userList", list);
+                object.save();
+                status.success(counter + " Users appended successfully.");
+              }, function(error) {
+                // Set the job's error status
+                status.error("Uh oh, something went wrong.");
+            });
+
+          },
+          error: function(object, error) {
+            // error is an instance of Parse.Error.
+            status.error("Uh oh, something went wrong.");
+        }
+    });
+});
+
 var driversList = new LinkedList(),
     attendeeList = new LinkedList();
 
 Parse.Cloud.job("rideMatcher", function(request, status) {
-  // Set up to modify user data
-  Parse.Cloud.useMasterKey();
-  // Query for all users
-  var attendance = 0;
-  var query = new Parse.Query(Parse.User);
-  query.each(function(user) {
-      var json = user.get("info");
-      if(json["RideRequest"]){
-        attendance++;
-        if(json["carOwner"]){
-          //make list for drivers
-          driversList.insertEnd(json);
-        } else{
-          //make list for attendees
-          attendeeList.insertEnd(json);
+  var userinfo = Parse.Object.extend('UserInfo'),
+      attendance = 0,
+      query = new Parse.Query(userinfo);
+
+  query.get('Zl0QIRJ0Zb', {
+        success: function(object) {
+          // object is an instance of Parse.Object.
+          var list = object.get("userList");
+
+          for(var user in list) {
+            if(list[user]["RideRequest"]){
+              attendance++;
+              if(list[user]["carOwner"]){
+                //make list for drivers
+                driversList.insertEnd(list[user]);
+              } else{
+                //make list for attendees
+                attendeeList.insertEnd(list[user]);
+              }
+            }
+          }
+          // match driver to attendees
+          rideMatch();
+          // Set the job's success status
+          status.success(attendance + " Attendance completed successfully.");
+        },
+        error: function(object, error) {
+          // error is an instance of Parse.Error.
+          status.error("Uh oh, something went wrong.");
         }
-      }
-  }).then(function() {
-    // match driver to attendees
-    rideMatch();
-    // Set the job's success status
-    status.success(attendance + " Attendance completed successfully.");
-  }, function(error) {
-    // Set the job's error status
-    status.error("Uh oh, something went wrong.");
-  });
+    });
 });
 
 function rideMatch() {
@@ -278,5 +318,3 @@ function sendResult(driverinfo, attendeeinfo) {
         }
     });
 }
-
-
