@@ -89,7 +89,7 @@ public class MainFragmentActivity extends FragmentActivity implements ActionBar.
 	@Override 
 	protected void onResume() {
 		super.onResume();
-		IntentFilter intentFilter = new IntentFilter("com.ridematch.UPDATE_STATUS");
+		IntentFilter intentFilter = new IntentFilter("ko.ridematch.UPDATE_STATUS");
 		resultReceiver = new BroadcastReceiver() {
 				final String TAG = "RideMatchReceiver";
 				@Override
@@ -120,7 +120,7 @@ public class MainFragmentActivity extends FragmentActivity implements ActionBar.
 					}
 				}
 		};
-		IntentFilter intentFilter2 = new IntentFilter("com.ridematch.MAIN");
+		IntentFilter intentFilter2 = new IntentFilter("ko.ridematch.MAIN");
 		offerReceiver = new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context context, Intent intent) {}
