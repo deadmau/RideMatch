@@ -15,7 +15,7 @@ public class ResultReceiver extends BroadcastReceiver {
         if (extras == null) {
         	return;
         }
-        Intent in = new Intent("com.ridematch.UPDATE_STATUS").putExtras(extras);
+        Intent in = new Intent("ko.ridematch.UPDATE_STATUS").putExtras(extras);
 		context.sendBroadcast(in);
 		matchResult = true;
 	}
