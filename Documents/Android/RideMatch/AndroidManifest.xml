@@ -36,8 +36,6 @@
         android:allowBackup="true" >
         <activity
             android:name="com.ridematch.MainFragmentActivity"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo"
             android:screenOrientation="portrait" >
         </activity>
 
@@ -50,26 +48,18 @@
 
         <activity
             android:name="com.ridematch.LogIn"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.ridematch.RequestUserInfo"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.ridematch.MapFragmentActivity"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.ridematch.SignUp"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -83,9 +73,7 @@
         </activity>
         <activity
             android:name="com.ridematch.SignUpOrLogIn"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo" >
+            android:screenOrientation="portrait" >
         </activity>
         <service android:name="com.parse.PushService" />
 		<receiver android:name="com.parse.ParseBroadcastReceiver">
@@ -97,13 +85,13 @@
 		<receiver android:name="com.ridematch.ResultReceiver"
 		    	  android:exported="false" >
         	<intent-filter>
-        	    <action android:name="com.ridematch.UPDATE_STATUS" />
+        	    <action android:name="ko.ridematch.UPDATE_STATUS" />
         	</intent-filter>
     	</receiver>
     	<receiver android:name="com.ridematch.OfferReceiver"
 		    	  android:exported="false" >
         	<intent-filter>
-        	    <action android:name="com.ridematch.MAIN" />
+        	    <action android:name="ko.ridematch.MAIN" />
         	</intent-filter>
     	</receiver>
     </application>
