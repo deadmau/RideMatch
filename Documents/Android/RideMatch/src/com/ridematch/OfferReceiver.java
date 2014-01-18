@@ -10,7 +10,7 @@ public class OfferReceiver extends BroadcastReceiver {
 	
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		Intent in = new Intent("com.ridematch.MAIN");
+		Intent in = new Intent("ko.ridematch.MAIN");
 		context.sendBroadcast(in);	
 		matchOffer = true;
 	}
