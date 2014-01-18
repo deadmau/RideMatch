@@ -161,7 +161,7 @@ Parse.Cloud.job("matchOffer", function(request, status) {
 	Parse.Push.send({
   		where: query,
   		data: {
-        action: "com.ridematch.MAIN",
+        action: "ko.ridematch.MAIN",
     		alert: "Notification for Sunday ride"
   		}
 		}, {
@@ -189,10 +189,9 @@ Parse.Cloud.job("listMaker", function(request, status) {
 
               query.each(function(user) {
                 var username = user.get("username");
-                if(list[username] === undefined) {
-                  list[username] = user.get("info");
-                  counter++;
-                }
+                //must store fresh user data
+                 list[username] = user.get("info");
+                 counter++;
               }).then(function() {
                 // Set the job's success status
                 object.set("userList", list);
@@ -302,7 +301,7 @@ function sendResult(driverinfo, attendeeinfo) {
     Parse.Push.send({
         where: query,
         data: {
-          action: "com.ridematch.UPDATE_STATUS",
+          action: "ko.ridematch.UPDATE_STATUS",
           driver: driverinfo,
           attendee: attendeeinfo,
           alert: "Match Results"
